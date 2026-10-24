@@ -1,0 +1,51 @@
+server:
+  port: ${PORT:8080}
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: ${APP_SESSION_SECURE:false}
+        same-site: lax
+        name: INDUS_SESSION
+spring:
+  application:
+    name: indus-hostel-service-badin
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/indus_hostel?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Karachi}
+    username: ${SPRING_DATASOURCE_USERNAME:indus_app}
+    password: ${SPRING_DATASOURCE_PASSWORD:replace-me}
+    hikari:
+      maximum-pool-size: 12
+      connection-timeout: 30000
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+  servlet:
+    multipart:
+      max-file-size: 8MB
+      max-request-size: 10MB
+  jackson:
+    time-zone: ${APP_HOSTEL_TIMEZONE:Asia/Karachi}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when_authorized
+app:
+  frontend-origin: ${APP_FRONTEND_ORIGIN:http://localhost:5173,http://127.0.0.1:5173}
+  file-storage: ${APP_FILE_STORAGE:./storage}
+  report-storage: ${APP_REPORT_STORAGE:./reports}
+  hostel-timezone: ${APP_HOSTEL_TIMEZONE:Asia/Karachi}
+  owner-email: ${APP_OWNER_EMAIL:}
+  seed-demo: ${APP_SEED_DEMO:false}
+logging:
+  level:
+    org.springframework.security: INFO
+    com.indushostel: INFO

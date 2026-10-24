@@ -1,0 +1,11 @@
+export type Role = 'OWNER' | 'MANAGER' | 'STUDENT'
+export type User = { id: number; displayName: string; email: string; role: Role; studentId?: number }
+export type Branding = { hostelName: string; logoFileId?: number | null; ownerEmail?: string }
+export type Dashboard = { activeStudents: number; capacity: number; occupiedBeds: number; availableBeds: number; occupancyPercent: number; feesDue: number; verifiedCollections: number; pendingPayments: number; outstanding: number; overdue: number; expenses: number; withdrawals: number; advancesOutstanding: number; operatingPosition: number; monthly: { month: string; collections: number; expenses: number }[]; categories: { name: string; value: number }[]; upcomingBills: number; recentPayments?: Payment[]; recentExpenses?: Expense[]; upcomingBillList?: Bill[] }
+export type Room = { id: number; roomNumber: string; section?: string; capacity: number; occupied: number; available: number; status: string; notes?: string }
+export type Student = { id: number; studentCode: string; fullName: string; contact: string; email?: string; room?: string; bedNumber?: string; monthlyFee: number; dueDay: number; status: string; checkInDate?: string; photoFileId?: number | null; emergencyContact?: string; address?: string; notes?: string }
+export type Invoice = { id: number; billingMonth: string; feeAmount: number; paidAmount: number; balance: number; dueDate: string; status: string }
+export type Payment = { id: number; studentName: string; studentCode: string; billingMonth: string; amount: number; paymentDate: string; method?: string; reference?: string; status: string; rejectionReason?: string; proofFileId?: number; receiptNumber?: string }
+export type Expense = { id: number; category: string; amount: number; expenseDate: string; description: string; vendor?: string; reversedAt?: string | null; billFileId?: number }
+export type Employee = { id: number; employeeCode: string; fullName: string; title: string; contact?: string; joiningDate?: string; salaryAmount: number; status: string }
+export type Bill = { id: number; category: string; vendor?: string; amount?: number; expectedAmount?: number; dueDate: string; status: string }
