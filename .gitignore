@@ -9,6 +9,18 @@ target/
 .env.*
 !.env.example
 !.env.compose.example
+application-local.yml
+application-local.yaml
+
+# Credentials, signing keys, and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+credentials*.json
+secrets*.json
 
 # Local runtime data / uploads / reports
 backend/storage/
@@ -18,3 +30,12 @@ reports/
 **/storage/
 **/reports/
 **/data/
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.sql.gz
+*.bak
+
+# Generated local build metadata
+*.tsbuildinfo
